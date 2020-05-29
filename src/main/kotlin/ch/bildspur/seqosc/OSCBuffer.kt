@@ -16,7 +16,14 @@ class OSCBuffer {
 
         val raw = samples.map {
             serializer.write(it.packet)
-            RawSample(it.delta, buffer.array())
+
+            buffer.limit(buffer.position())
+            buffer.position(0)
+
+            val rawPacket = ByteArray(buffer.remaining())
+            buffer[rawPacket]
+
+            RawSample(it.delta, rawPacket)
         }
 
         // raw size: delta(64bit int) + length(32bit int) + data(?)
