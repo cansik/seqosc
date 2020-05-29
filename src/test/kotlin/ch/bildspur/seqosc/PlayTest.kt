@@ -10,7 +10,7 @@ fun main() {
     val buffer = OSCBuffer()
     buffer.fromByteBuffer(ByteBuffer.wrap(data))
 
-    val player = OSCPlayer("localhost", 8000, buffer)
+    val player = OSCPlayer("localhost", 8000, buffer, 1f)
 
     println("playing ${buffer.samples.size} samples...")
     player.play()
