@@ -1,6 +1,7 @@
 package ch.bildspur.seqosc
 
-import org.junit.Test
+import java.nio.file.Files
+import java.nio.file.Paths
 
 fun main() {
     val recorder = OSCRecorder(12000)
@@ -12,4 +13,6 @@ fun main() {
     recorder.stop()
 
     println("recorded ${recorder.buffer.samples.size} samples!")
+
+    Files.write(Paths.get("recordings", "test.osc"), recorder.buffer.asByteBuffer().array())
 }

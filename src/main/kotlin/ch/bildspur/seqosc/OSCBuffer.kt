@@ -36,14 +36,12 @@ class OSCBuffer {
         data.order(ByteOrder.LITTLE_ENDIAN)
         val parser = OSCSerializerAndParserBuilder().buildParser()
 
-        var index = 0
-        while(index < data.capacity()) {
-            val delta = data.getLong(index)
-            index += 8
-            val length = data.getInt(index)
-            index += 4
-            val packet = parser.convert(data.slice().position(index).limit(length))
-            index += length
+        while(data.hasRemaining()) {
+            val delta = data.long
+            val length = data.int
+            val subpart = data.slice().limit(length)
+            val packet = parser.convert(subpart)
+            data.position(data.position() + length)
 
             samples.add(OSCSample(delta, packet))
         }
