@@ -1,9 +1,6 @@
 package ch.bildspur.seqosc
 
-import ch.bildspur.event.Event
-import ch.bildspur.seqosc.net.OSCPacket
 import ch.bildspur.seqosc.net.OSCServer
-import java.net.InetAddress
 
 class OSCRecorder(val port: Int, val buffer: OSCBuffer = OSCBuffer()) {
 

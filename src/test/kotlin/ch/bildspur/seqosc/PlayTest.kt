@@ -8,7 +8,7 @@ fun main() {
     val data = Files.readAllBytes(Paths.get("recordings", "test.osc"))
 
     val buffer = OSCBuffer()
-    buffer.fromByteBuffer(ByteBuffer.wrap(data))
+    buffer.fromCompressedByteBuffer(ByteBuffer.wrap(data))
 
     val player = OSCPlayer("localhost", 8000, buffer, 1f)
 
