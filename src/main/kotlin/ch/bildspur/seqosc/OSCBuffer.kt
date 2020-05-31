@@ -50,7 +50,7 @@ class OSCBuffer {
         data.position(0)
 
         val output = ByteBuffer.allocate(data.limit())
-        val compressor = Deflater()
+        val compressor = Deflater(Deflater.BEST_COMPRESSION)
         compressor.setInput(data)
         compressor.finish()
         val compressedDataLength = compressor.deflate(output)
