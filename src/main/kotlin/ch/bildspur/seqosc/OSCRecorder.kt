@@ -1,54 +1,46 @@
 package ch.bildspur.seqosc
 
-import com.illposed.osc.OSCBadDataEvent
-import com.illposed.osc.OSCPacketEvent
-import com.illposed.osc.OSCPacketListener
-import com.illposed.osc.transport.udp.OSCPortIn
-import com.illposed.osc.transport.udp.OSCPortInBuilder
+import ch.bildspur.event.Event
+import ch.bildspur.seqosc.net.OSCPacket
+import ch.bildspur.seqosc.net.OSCServer
+import java.net.InetAddress
 
-class OSCRecorder (val port : Int, val buffer : OSCBuffer = OSCBuffer()) : OSCPacketListener {
+class OSCRecorder(val port: Int, val buffer: OSCBuffer = OSCBuffer()) {
 
-    val receiver : OSCPortIn = OSCPortInBuilder()
-            .setPort(port)
-            .addPacketListener(this)
-            .build()
+    val server = OSCServer(port)
 
-    @Volatile var recording = false
+    @Volatile
+    var recording = false
         private set
 
-    @Volatile private var timeStamp = 0L
+    @Volatile
+    private var timeStamp = 0L
+
+    init {
+        server.onPacketReceived += {
+            if (recording) {
+                val ts = System.currentTimeMillis()
+                buffer.samples.add(OSCSample(ts - timeStamp, it))
+                timeStamp = ts
+            }
+        }
+    }
 
     fun record() {
-        if(recording)
+        if (recording)
             return
 
-        receiver.startListening()
+        server.open()
 
         timeStamp = System.currentTimeMillis()
         recording = true
     }
 
     fun stop() {
-        if(!recording)
+        if (!recording)
             return
 
-        receiver.stopListening()
-
+        server.close()
         recording = false
-    }
-
-    override fun handlePacket(event: OSCPacketEvent?) {
-        if(!recording)
-            return
-
-        event?.packet?.let {
-            val ts = System.currentTimeMillis()
-            buffer.samples.add(OSCSample(ts - timeStamp, it))
-            timeStamp = ts
-        }
-    }
-
-    override fun handleBadData(event: OSCBadDataEvent?) {
-
     }
 }

@@ -1,39 +1,21 @@
 package ch.bildspur.seqosc
 
-import com.illposed.osc.OSCSerializerAndParserBuilder
-import com.illposed.osc.transport.udp.OSCPortIn
+import ch.bildspur.seqosc.net.OSCPacket
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class OSCBuffer {
     val samples = mutableListOf<OSCSample>()
 
-    private data class RawSample(val delta : Long, val data : ByteArray)
-
     fun asByteBuffer() : ByteBuffer {
-        val buffer = ByteBuffer.allocate(OSCPortIn.BUFFER_SIZE)
-        val serializer = OSCSerializerAndParserBuilder().buildSerializer(buffer)
-
-        val raw = samples.map {
-            serializer.write(it.packet)
-
-            buffer.limit(buffer.position())
-            buffer.position(0)
-
-            val rawPacket = ByteArray(buffer.remaining())
-            buffer[rawPacket]
-
-            RawSample(it.delta, rawPacket)
-        }
-
         // raw size: delta(64bit int) + length(32bit int) + data(?)
-        val data = ByteBuffer.allocate((samples.size * (4 + 8)) + raw.sumBy { it.data.size })
+        val data = ByteBuffer.allocate((samples.size * (4 + 8)) + samples.sumBy { it.packet.data.size })
         data.order(ByteOrder.LITTLE_ENDIAN)
 
-        raw.forEach {
+        samples.forEach {
             data.putLong(it.delta)
-            data.putInt(it.data.size)
-            data.put(it.data)
+            data.putInt(it.packet.data.size)
+            data.put(it.packet.data)
         }
 
         return data
@@ -41,13 +23,16 @@ class OSCBuffer {
 
     fun fromByteBuffer(data : ByteBuffer) {
         data.order(ByteOrder.LITTLE_ENDIAN)
-        val parser = OSCSerializerAndParserBuilder().buildParser()
 
         while(data.hasRemaining()) {
             val delta = data.long
             val length = data.int
             val subpart = data.slice().limit(length)
-            val packet = parser.convert(subpart)
+
+            val packetData = ByteArray(subpart.remaining())
+            subpart.get(packetData)
+
+            val packet = OSCPacket(packetData)
             data.position(data.position() + length)
 
             samples.add(OSCSample(delta, packet))

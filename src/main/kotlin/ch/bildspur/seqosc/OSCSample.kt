@@ -1,5 +1,5 @@
 package ch.bildspur.seqosc
 
-import com.illposed.osc.OSCPacket
+import ch.bildspur.seqosc.net.OSCPacket
 
 data class OSCSample(var delta : Long, var packet : OSCPacket)
