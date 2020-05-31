@@ -4,8 +4,8 @@ import java.nio.file.Files
 import java.nio.file.Paths
 
 fun main() {
-    val recorder = OSCRecorder(12000)
-    val time = 2000L
+    val recorder = OSCRecorder(7800)
+    val time = 5000L
 
     println("recording for ${time / 1000} seconds...")
     recorder.record()
