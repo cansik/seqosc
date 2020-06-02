@@ -1,5 +1,12 @@
 package ch.bildspur.seqosc.ui
 
+import javafx.application.Platform
+import javafx.stage.Stage
+
 fun main() {
-    println("hello world")
+    Platform.startup {
+        val window = Player()
+        val stage = Stage()
+        window.start(stage)
+    }
 }
