@@ -5,7 +5,7 @@ import java.nio.file.Paths
 
 fun main() {
     val recorder = OSCRecorder(7800)
-    val time = 5000L
+    val time = 1000L * 30
 
     println("recording for ${time / 1000} seconds...")
     recorder.record()
