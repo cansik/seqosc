@@ -1,9 +1,14 @@
 package ch.bildspur.seqosc.net
 
-data class OSCPacket(val data: ByteArray) {
+open class OSCPacket(val data: ByteArray) {
+    companion object {
+        @JvmStatic
+        val bundleIdentifier = "#bundle".toByteArray(Charsets.UTF_8)
+    }
 
-    val x: Int
-        get() = data[0].toInt()
+    val isBundle: Boolean by lazy {
+        data.take(bundleIdentifier.size).toByteArray().contentEquals(bundleIdentifier)
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -18,5 +23,9 @@ data class OSCPacket(val data: ByteArray) {
 
     override fun hashCode(): Int {
         return data.contentHashCode()
+    }
+
+    override fun toString(): String {
+        return data.take(30).toByteArray().toString(Charsets.UTF_8)
     }
 }
