@@ -12,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClassName = 'ch.bildspur.seqosc.ui.Main'
+}
+
 javafx {
     version = "11"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
