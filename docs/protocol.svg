@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1280 220" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <rect x="0" y="0" width="1280" height="220" style="fill:white;"/>
+    <g transform="matrix(4.89787,0,0,0.324265,-195.47,31.6275)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(255,127,127);"/>
+    </g>
+    <g transform="matrix(0.812495,0,0,0.754094,-6.08333,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.28px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,-60.6181,-93.1218)">
+        <text x="97.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:30px;">header</text>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,-59.9945,12.9611)">
+        <text x="121.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">flags</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int16</text>
+    </g>
+    <g transform="matrix(0.812495,0,0,0.754094,276.727,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.28px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,222.816,12.9611)">
+        <text x="121.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">speed</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:float</text>
+    </g>
+    <g transform="matrix(0.97805,0,0,0.754094,114.573,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.15px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,82.6211,12.9611)">
+        <text x="85.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">sampleCount</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
+    </g>
+    <g transform="matrix(1.14741,0,0,0.754094,389.533,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.03px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,378.817,12.9611)">
+        <text x="73.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">commentLength</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
+    </g>
+    <g transform="matrix(1.14741,0,0,0.754094,570.763,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.03px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,560.047,12.9611)">
+        <text x="109.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">comment</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:utf-8</text>
+    </g>
+    <g transform="matrix(0.923431,0,0,0.754094,762.376,53.3537)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(189,189,189);stroke:black;stroke-width:1.19px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,724.222,12.9611)">
+        <text x="97.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">timestamp</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int64</text>
+    </g>
+    <g transform="matrix(1.14741,0,0,0.754094,897.846,52.8936)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(189,189,189);stroke:black;stroke-width:1.03px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,887.131,12.6033)">
+        <text x="79.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">sampleLength</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
+    </g>
+    <g transform="matrix(0.735381,0,0,0.754094,1098.18,52.8936)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(189,189,189);stroke:black;stroke-width:1.34px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,1035.7,10.9674)">
+        <text x="115.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">sample</text>
+        <text x="109.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:byte[]</text>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,721.764,-92.495)">
+        <text x="88.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:30px;">samples[]</text>
+    </g>
+    <g transform="matrix(2.80623,0,0,0.324265,675.095,31.6275)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(127,188,255);"/>
+    </g>
+</svg>
