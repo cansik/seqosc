@@ -1,7 +1,7 @@
 # seqosc
 The idea of this project was to create a very simple protocol that defines the format on how to store recordings of [Open Sound Control](http://opensoundcontrol.org/introduction-osc) (OSC) packets. A difference to other OSC sequencer is that this format allows a recorder or player to work with OSC packets without interpreting them. This leads to a huge performance boost.
 
-### Specification
+### Specification
 
 The seqosc format consists of a header which specifies certain meta information about the sampled OSC data and a payload which contains the actual samples. The time resolution is currently limited to microseconds due to modern operating systems realtime limitations, but the timestamp could be also interpreted as nanosecond.
 
