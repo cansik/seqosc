@@ -9,13 +9,10 @@ fun main() {
     val data = Files.readAllBytes(Paths.get("recordings", "test.osc"))
 
     val buffer = OSCBuffer()
-    buffer.fromCompressedByteBuffer(ByteBuffer.wrap(data))
+    buffer.fromByteBuffer(ByteBuffer.wrap(data))
 
     println("First:")
     println(buffer.samples.first().packet)
-
-    val msg = OSCMessage(buffer.samples.first().packet.data)
-    val isBundle = msg.isBundle
 
     val player = OSCPlayer("localhost", 7800, buffer, 1f)
 

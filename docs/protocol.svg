@@ -13,7 +13,7 @@
     </g>
     <g transform="matrix(1.0224,0,0,1.0224,-59.9945,12.9611)">
         <text x="121.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">flags</text>
-        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int16</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
     </g>
     <g transform="matrix(0.812495,0,0,0.754094,276.727,53.2515)">
         <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.28px;"/>

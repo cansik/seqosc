@@ -7,30 +7,55 @@ import java.util.zip.Deflater
 import java.util.zip.Inflater
 
 
+class OSCBuffer(var comment: String = "") {
+    // meta
+    var speed = 1.0f
 
-
-
-class OSCBuffer {
+    // data
     val samples = mutableListOf<OSCSample>()
 
-    fun asByteBuffer() : ByteBuffer {
-        // raw size: delta(64bit int) + length(32bit int) + data(?)
-        val data = ByteBuffer.allocate((samples.size * (4 + 8)) + samples.sumBy { it.packet.data.size })
-        data.order(ByteOrder.LITTLE_ENDIAN)
+    fun asByteBuffer(compressed: Boolean = false): ByteBuffer {
+        // write payload
+        val payloadLength = (samples.size * (Int.SIZE_BYTES + Long.SIZE_BYTES)) + samples.sumBy { it.packet.data.size }
+        var payload = ByteBuffer.allocate(payloadLength)
+        payload.order(ByteOrder.LITTLE_ENDIAN)
 
         samples.forEach {
-            data.putLong(it.delta)
-            data.putInt(it.packet.data.size)
-            data.put(it.packet.data)
+            payload.putLong(it.timestamp)
+            payload.putInt(it.packet.data.size)
+            payload.put(it.packet.data)
         }
+
+        // compression
+        if (compressed)
+            payload = payload.compress()
+
+        // reset position
+        payload.position(0)
+
+        // write header
+        val rawComment = comment.toByteArray(Charsets.UTF_8)
+        val headerLength = Int.SIZE_BYTES + Int.SIZE_BYTES + 4 + Int.SIZE_BYTES + rawComment.size
+
+        val data = ByteBuffer.allocate(headerLength + payload.limit())
+        val flags = compressed.toFlag(0)
+
+        data.putInt(flags)
+        data.putInt(samples.size)
+        data.putFloat(speed)
+        data.putInt(rawComment.size)
+        data.put(rawComment)
+        data.order(ByteOrder.LITTLE_ENDIAN)
+
+        data.put(payload)
 
         return data
     }
 
-    fun fromByteBuffer(data : ByteBuffer) {
+    fun fromByteBuffer(data: ByteBuffer) {
         data.order(ByteOrder.LITTLE_ENDIAN)
 
-        while(data.hasRemaining()) {
+        while (data.hasRemaining()) {
             val delta = data.long
             val length = data.int
             val subpart = data.slice().limit(length)
@@ -43,29 +68,5 @@ class OSCBuffer {
 
             samples.add(OSCSample(delta, packet))
         }
-    }
-
-    fun asCompressedByteBuffer() : ByteBuffer {
-        val data = asByteBuffer()
-        data.position(0)
-
-        val output = ByteBuffer.allocate(data.limit())
-        val compressor = Deflater(Deflater.BEST_COMPRESSION)
-        compressor.setInput(data)
-        compressor.finish()
-        val compressedDataLength = compressor.deflate(output)
-        compressor.end()
-
-        return output
-    }
-
-    fun fromCompressedByteBuffer(data : ByteBuffer) {
-        val decompresser = Inflater()
-        decompresser.setInput(data)
-        val result = ByteBuffer.allocate(data.limit())
-        val resultLength = decompresser.inflate(result)
-        decompresser.end()
-        result.position(0);
-        fromByteBuffer(result)
     }
 }

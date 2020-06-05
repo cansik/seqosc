@@ -3,7 +3,7 @@ The idea of this project was to create a very simple protocol that defines the f
 
 ### Specification
 
-The seqosc format consists of a header which specifies certain meta information about the sampled OSC data and a payload which contains the actual samples. The time resolution is currently limited to microseconds due to modern operating systems realtime limitations, but the timestamp could be also interpreted as nanosecond.
+The seqosc format consists of a header which specifies certain meta information about the sampled OSC data and a payload which contains the actual samples. Such a combination of header & samples is called `OSCBuffer`. The time resolution is currently limited to microseconds due to modern operating systems realtime limitations, but the timestamp could be also interpreted as nanosecond.
 
 ![Protocol](docs/protocol.svg)
 
@@ -13,7 +13,7 @@ The data is in binary format with little-endian encoding. Please be aware that t
 
 Only one header per file is allowed and every seqosc file has to start with the header. 
 
-- flags (`int16`)
+- flags (`int32`)
     - compression (`byte 0`) - if on payload is [compressed](#Compression) with delfate
 - sampleCount (`int32`) - how many samples are in the payload (`-1` tells the parser to iterate himself)
 - speed (`float`) - intended speed to re-play the samples
@@ -30,7 +30,7 @@ The samples part contains all OSC packet samples that have been recorded. The fo
 
 #### Compression
 
-To minimize the data size of an seqosc file it is possible to add compression to the payload. The default method used is the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) (zlib) compression which is common in most programming langauges. If a seqosc payload is compressed the compression flag in the header has to be turned on.
+To minimize the data size of an `OSCBuffer` it is possible to add compression to the payload. The default method used is the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) (zlib) compression which is common in most programming langauges. If a seqosc payload is compressed the compression flag in the header has to be turned on.
 
 ### About
 Developed by cansik

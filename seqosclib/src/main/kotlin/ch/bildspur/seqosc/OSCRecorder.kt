@@ -10,15 +10,10 @@ class OSCRecorder(val port: Int, val buffer: OSCBuffer = OSCBuffer()) {
     var recording = false
         private set
 
-    @Volatile
-    private var timeStamp = 0L
-
     init {
         server.onPacketReceived += {
             if (recording) {
-                val ts = System.currentTimeMillis()
-                buffer.samples.add(OSCSample(ts - timeStamp, it))
-                timeStamp = ts
+                buffer.samples.add(OSCSample(System.currentTimeMillis(), it))
             }
         }
     }
@@ -29,7 +24,6 @@ class OSCRecorder(val port: Int, val buffer: OSCBuffer = OSCBuffer()) {
 
         server.open()
 
-        timeStamp = System.currentTimeMillis()
         recording = true
     }
 

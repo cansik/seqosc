@@ -11,9 +11,15 @@ class OSCPlayer(val host : String, val port : Int, val buffer : OSCBuffer, var s
     val address = Inet4Address.getByName(host)
 
     fun play() {
+        var lastTimeStamp = buffer.samples.first().timestamp
+
         buffer.samples.forEach {
-            Thread.sleep((it.delta / speed).roundToLong())
+            val delta = it.timestamp - lastTimeStamp
+
+            Thread.sleep((delta / speed).roundToLong())
             client.send(address, port, it.packet)
+
+            lastTimeStamp = it.timestamp
         }
     }
 
