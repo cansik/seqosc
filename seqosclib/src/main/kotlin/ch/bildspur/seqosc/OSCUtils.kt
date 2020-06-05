@@ -1,6 +1,7 @@
 package ch.bildspur.seqosc
 
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.util.zip.Deflater
 import java.util.zip.Inflater
 
@@ -26,6 +27,18 @@ fun ByteBuffer.decompress() : ByteBuffer {
     decompresser.end()
     result.position(0)
     return result
+}
+
+/**
+ * Reads byte array out of byte buffer
+ */
+fun ByteBuffer.getBytes(length : Int) : ByteArray {
+    val subpart = this.slice().limit(length)
+    subpart.order(ByteOrder.LITTLE_ENDIAN)
+    val data = ByteArray(subpart.remaining())
+    subpart.get(data)
+    this.position(this.position() + length);
+    return data
 }
 
 fun Boolean.toFlag(position : Int) : Int  {

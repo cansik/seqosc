@@ -3,8 +3,6 @@ package ch.bildspur.seqosc
 import ch.bildspur.seqosc.net.OSCPacket
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.zip.Deflater
-import java.util.zip.Inflater
 
 
 class OSCBuffer(var comment: String = "") {
@@ -38,6 +36,8 @@ class OSCBuffer(var comment: String = "") {
         val headerLength = Int.SIZE_BYTES + Int.SIZE_BYTES + 4 + Int.SIZE_BYTES + rawComment.size
 
         val data = ByteBuffer.allocate(headerLength + payload.limit())
+        data.order(ByteOrder.LITTLE_ENDIAN)
+
         val flags = compressed.toFlag(0)
 
         data.putInt(flags)
@@ -45,7 +45,6 @@ class OSCBuffer(var comment: String = "") {
         data.putFloat(speed)
         data.putInt(rawComment.size)
         data.put(rawComment)
-        data.order(ByteOrder.LITTLE_ENDIAN)
 
         data.put(payload)
 
@@ -54,19 +53,35 @@ class OSCBuffer(var comment: String = "") {
 
     fun fromByteBuffer(data: ByteBuffer) {
         data.order(ByteOrder.LITTLE_ENDIAN)
+        data.position(0)
 
-        while (data.hasRemaining()) {
-            val delta = data.long
-            val length = data.int
-            val subpart = data.slice().limit(length)
+        // read header
+        val flags = data.int
+        val compressed = flags.getFlag(0)
 
-            val packetData = ByteArray(subpart.remaining())
-            subpart.get(packetData)
+        var sampleCount = data.int
+        sampleCount = if(sampleCount < 0) Int.MAX_VALUE else sampleCount
 
+        this.speed = data.float
+        this.comment = data.getBytes(data.int).toString(Charsets.UTF_8)
+
+        var payload = data.slice()
+        payload.order(ByteOrder.LITTLE_ENDIAN)
+
+        if(compressed)
+            payload = payload.decompress()
+
+        payload.position(0)
+
+        var count = 0
+        while (count < sampleCount && payload.hasRemaining()) {
+            val timestamp = payload.long
+            val length = payload.int
+            val packetData = payload.getBytes(length)
             val packet = OSCPacket(packetData)
-            data.position(data.position() + length)
 
-            samples.add(OSCSample(delta, packet))
+            samples.add(OSCSample(timestamp, packet))
+            count++
         }
     }
 }

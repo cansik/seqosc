@@ -17,5 +17,5 @@ fun main() {
     println("First Sample:")
     println(recorder.buffer.samples.first().packet.data.contentToString())
 
-    Files.write(Paths.get("recordings", "test.osc"), recorder.buffer.asByteBuffer(compressed = true).array())
+    Files.write(Paths.get("recordings", "test.osc"), recorder.buffer.asByteBuffer(compressed = false).array())
 }
