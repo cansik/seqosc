@@ -12,7 +12,7 @@ class OSCBuffer(var comment: String = "") {
     // data
     val samples = mutableListOf<OSCSample>()
 
-    fun asByteBuffer(compressed: Boolean = false): ByteBuffer {
+    fun write(compressed: Boolean = false): ByteBuffer {
         // write payload
         val payloadLength = (samples.size * (Int.SIZE_BYTES + Long.SIZE_BYTES)) + samples.sumBy { it.packet.data.size }
         var payload = ByteBuffer.allocate(payloadLength)
@@ -52,7 +52,7 @@ class OSCBuffer(var comment: String = "") {
         return data
     }
 
-    fun fromByteBuffer(data: ByteBuffer) {
+    fun read(data: ByteBuffer) {
         data.order(ByteOrder.LITTLE_ENDIAN)
         data.position(0)
 

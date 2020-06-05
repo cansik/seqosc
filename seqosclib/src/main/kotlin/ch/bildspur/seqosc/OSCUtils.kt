@@ -49,5 +49,5 @@ fun Boolean.toFlag(position : Int) : Int  {
 }
 
 fun Int.getFlag(position: Int) : Boolean {
-    return this shr position and 0xF == 1
+    return (this and (1 shl position)) != 0;
 }

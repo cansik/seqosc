@@ -8,7 +8,7 @@ fun main() {
     val data = Files.readAllBytes(Paths.get("recordings", "test.osc"))
 
     val buffer = OSCBuffer()
-    buffer.fromByteBuffer(ByteBuffer.wrap(data))
+    buffer.read(ByteBuffer.wrap(data))
 
     println("First:")
     println(buffer.samples.first().packet)
