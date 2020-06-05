@@ -30,7 +30,7 @@ class OSCBuffer(var comment: String = "") {
         if (compressed)
             payload = payload.compress()
 
-        // reset position
+        // reset payload position
         payload.position(0)
 
         // write header

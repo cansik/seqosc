@@ -13,6 +13,7 @@ fun ByteBuffer.compress() : ByteBuffer {
     val compressedDataLength = compressor.deflate(output)
     compressor.end()
     output.position(0)
+    output.limit(compressedDataLength)
     return output
 }
 
