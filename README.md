@@ -33,5 +33,8 @@ The samples part contains all OSC packet samples that have been recorded. The fo
 
 To minimize the data size of an `OSCBuffer` it is possible to add compression to the payload. The default method used is the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) (zlib) compression which is common in most programming langauges. If a seqosc payload is compressed the compression flag in the header has to be turned on.
 
+### Reference Implementation
+Currently there is a reference implementation of an [OSCBuffer](https://github.com/cansik/seqosc/blob/master/seqosclib/src/main/kotlin/ch/bildspur/seqosc/OSCBuffer.kt#L8) in Kotlin.
+
 ### About
 Developed by cansik
