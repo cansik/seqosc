@@ -1,6 +1,5 @@
 package ch.bildspur.seqosc
 
-import ch.bildspur.seqosc.net.OSCMessage
 import java.nio.ByteBuffer
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -14,7 +13,7 @@ fun main() {
     println("First:")
     println(buffer.samples.first().packet)
 
-    val player = OSCPlayer("localhost", 8000, buffer, 1f)
+    val player = OSCPlayer("localhost", 8000, buffer, buffer.speed)
 
     println("playing ${buffer.samples.size} samples...")
     player.play()

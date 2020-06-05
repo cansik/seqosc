@@ -5,7 +5,7 @@ import java.nio.file.Paths
 
 fun main() {
     val recorder = OSCRecorder(12000, OSCBuffer("test recording"))
-    val time = 1000L * 3
+    val time = 1000L * 15
 
     println("recording for ${time / 1000} seconds...")
     recorder.record()
@@ -17,5 +17,6 @@ fun main() {
     println("First Sample:")
     println(recorder.buffer.samples.first().packet.data.contentToString())
 
-    Files.write(Paths.get("recordings", "test.osc"), recorder.buffer.asByteBuffer(compressed = true).array())
+    Files.write(Paths.get("recordings", "test.osc"), recorder.buffer.asByteBuffer(compressed = false).array())
+    Files.write(Paths.get("recordings", "test-compressed.osc"), recorder.buffer.asByteBuffer(compressed = true).array())
 }
