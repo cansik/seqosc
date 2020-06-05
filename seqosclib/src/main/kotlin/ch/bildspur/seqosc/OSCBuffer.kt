@@ -33,7 +33,7 @@ class OSCBuffer(var comment: String = "") {
 
         // write header
         val rawComment = comment.toByteArray(Charsets.UTF_8)
-        val headerLength = Int.SIZE_BYTES + Int.SIZE_BYTES + 4 + Int.SIZE_BYTES + rawComment.size
+        val headerLength = Int.SIZE_BYTES + Int.SIZE_BYTES + Int.SIZE_BYTES + 4 + Int.SIZE_BYTES + rawComment.size
 
         val data = ByteBuffer.allocate(headerLength + payload.limit())
         data.order(ByteOrder.LITTLE_ENDIAN)
@@ -42,6 +42,7 @@ class OSCBuffer(var comment: String = "") {
 
         data.putInt(flags)
         data.putInt(samples.size)
+        data.putInt(payloadLength)
         data.putFloat(speed)
         data.putInt(rawComment.size)
         data.put(rawComment)
@@ -62,6 +63,8 @@ class OSCBuffer(var comment: String = "") {
         var sampleCount = data.int
         sampleCount = if(sampleCount < 0) Int.MAX_VALUE else sampleCount
 
+        val payloadLength  = data.int
+
         this.speed = data.float
         this.comment = data.getBytes(data.int).toString(Charsets.UTF_8)
 
@@ -69,7 +72,7 @@ class OSCBuffer(var comment: String = "") {
         payload.order(ByteOrder.LITTLE_ENDIAN)
 
         if(compressed)
-            payload = payload.decompress()
+            payload = payload.decompress(payloadLength)
 
         payload.position(0)
 

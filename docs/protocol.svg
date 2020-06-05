@@ -5,41 +5,50 @@
     <g transform="matrix(4.89787,0,0,0.324265,-195.47,31.6275)">
         <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(255,127,127);"/>
     </g>
-    <g transform="matrix(0.812495,0,0,0.754094,-6.08333,53.2515)">
-        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.28px;"/>
+    <g transform="matrix(0.627777,0,0,0.754094,2.47974,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.44px;"/>
     </g>
     <g transform="matrix(1.0224,0,0,1.0224,-60.6181,-93.1218)">
         <text x="97.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:30px;">header</text>
     </g>
-    <g transform="matrix(1.0224,0,0,1.0224,-59.9945,12.9611)">
+    <g transform="matrix(1.0224,0,0,1.0224,-74.8837,12.9611)">
         <text x="121.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">flags</text>
         <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
     </g>
-    <g transform="matrix(0.812495,0,0,0.754094,276.727,53.2515)">
-        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.28px;"/>
+    <g transform="matrix(0.736317,0,0,0.754094,349.436,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.34px;"/>
     </g>
-    <g transform="matrix(1.0224,0,0,1.0224,222.816,12.9611)">
+    <g transform="matrix(1.0224,0,0,1.0224,285.746,13.1656)">
         <text x="121.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">speed</text>
         <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:float</text>
     </g>
-    <g transform="matrix(0.97805,0,0,0.754094,114.573,53.2515)">
-        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.15px;"/>
+    <g transform="matrix(0.740815,0,0,0.754094,96.3949,53.3537)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.34px;"/>
     </g>
-    <g transform="matrix(1.0224,0,0,1.0224,82.6211,12.9611)">
-        <text x="85.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">sampleCount</text>
-        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
+    <g transform="matrix(1.0224,0,0,1.0224,34.7613,2.73708)">
+        <text x="115.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">sample</text>
+        <text x="121.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">count</text>
+        <text x="115.126px" y="179.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
     </g>
-    <g transform="matrix(1.14741,0,0,0.754094,389.533,53.2515)">
+    <g transform="matrix(0.859933,0,0,0.754094,207.882,53.3537)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.24px;"/>
+    </g>
+    <g transform="matrix(1.0224,0,0,1.0224,161.556,2.73708)">
+        <text x="115.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">sample</text>
+        <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">length</text>
+        <text x="115.126px" y="179.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
+    </g>
+    <g transform="matrix(1.14741,0,0,0.754094,446.215,53.2515)">
         <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.03px;"/>
     </g>
-    <g transform="matrix(1.0224,0,0,1.0224,378.817,12.9611)">
+    <g transform="matrix(1.0224,0,0,1.0224,435.5,12.9611)">
         <text x="73.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">commentLength</text>
         <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
     </g>
-    <g transform="matrix(1.14741,0,0,0.754094,570.763,53.2515)">
-        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.03px;"/>
+    <g transform="matrix(0.788543,0,0,0.754094,644.081,53.2515)">
+        <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(236,236,236);stroke:black;stroke-width:1.3px;"/>
     </g>
-    <g transform="matrix(1.0224,0,0,1.0224,560.047,12.9611)">
+    <g transform="matrix(1.0224,0,0,1.0224,584.657,12.8589)">
         <text x="109.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">comment</text>
         <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:utf-8</text>
     </g>
@@ -50,14 +59,14 @@
         <text x="97.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">timestamp</text>
         <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int64</text>
     </g>
-    <g transform="matrix(1.14741,0,0,0.754094,897.846,52.8936)">
+    <g transform="matrix(1.14741,0,0,0.754094,897.846,53.3537)">
         <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(189,189,189);stroke:black;stroke-width:1.03px;"/>
     </g>
     <g transform="matrix(1.0224,0,0,1.0224,887.131,12.6033)">
         <text x="79.126px" y="139.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">sampleLength</text>
         <text x="115.126px" y="159.495px" style="font-family:'JetBrainsMono-Regular', 'JetBrains Mono', monospace;font-size:20px;">:int32</text>
     </g>
-    <g transform="matrix(0.735381,0,0,0.754094,1098.18,52.8936)">
+    <g transform="matrix(0.735381,0,0,0.754094,1098.18,53.3537)">
         <rect x="46.357" y="90.713" width="157.947" height="97.564" style="fill:rgb(189,189,189);stroke:black;stroke-width:1.34px;"/>
     </g>
     <g transform="matrix(1.0224,0,0,1.0224,1035.7,10.9674)">

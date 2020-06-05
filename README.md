@@ -15,9 +15,10 @@ Only one header per file is allowed and every seqosc file has to start with the 
 
 - flags (`int32`)
     - compression (`byte 0`) - if on payload is [compressed](#Compression) with delfate
-- sampleCount (`int32`) - how many samples are in the payload (`-1` tells the parser to iterate himself)
+- sample-count (`int32`) - how many samples are in the payload (`-1` tells the parser to iterate himself)
+- sample-length (`int32`) - how long the payload is in bytes (used mainly for compression)
 - speed (`float`) - intended speed to re-play the samples
-- commentLength (`int32`) - length of the comment
+- comment-length (`int32`) - length of the comment
 - comment (`byte[]`) - comment data as utf-8 string
 
 #### Samples

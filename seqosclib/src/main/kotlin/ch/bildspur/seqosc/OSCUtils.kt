@@ -8,6 +8,7 @@ import java.util.zip.Inflater
 fun ByteBuffer.compress() : ByteBuffer {
     this.position(0)
     val output = ByteBuffer.allocate(this.limit())
+    output.order(ByteOrder.LITTLE_ENDIAN)
     val compressor = Deflater(Deflater.BEST_COMPRESSION)
     compressor.setInput(this)
     compressor.finish()
@@ -18,14 +19,16 @@ fun ByteBuffer.compress() : ByteBuffer {
     return output
 }
 
-fun ByteBuffer.decompress() : ByteBuffer {
+fun ByteBuffer.decompress(bufferSize : Int) : ByteBuffer {
     this.position(0)
     val decompresser = Inflater()
     decompresser.setInput(this)
-    val result = ByteBuffer.allocate(this.limit())
+    val result = ByteBuffer.allocate(bufferSize)
+    result.order(ByteOrder.LITTLE_ENDIAN)
     val resultLength = decompresser.inflate(result)
     decompresser.end()
     result.position(0)
+    result.limit(resultLength)
     return result
 }
 
