@@ -9,19 +9,28 @@ namespace SeqOSC
     public class OSCPlayer
     {
         public OSCBuffer Buffer { get; set; }
-        public float Speed { get; set; }
-        public IPEndPoint Receiver { get; set; }
+        public float Speed { get; set; } = 1.0f;
+        public string Host { get; set; } = IPAddress.Loopback.ToString();
+        public int Port { get; set; } = 8000;
         
         public OSCClient Client { get; set; }
 
-        public OSCPlayer(string host, int port, OSCBuffer buffer)
+        public bool IsPlaying => _playing;
+
+        private volatile bool _playing = false;
+
+        public OSCPlayer() { }
+        
+        public OSCPlayer(OSCBuffer buffer)
         {
-            Receiver= new IPEndPoint(IPAddress.Parse(host), port);
             Buffer = buffer;
         }
 
         public void Play()
         {
+            _playing = true;
+
+            var receiver = new IPEndPoint(IPAddress.Parse(Host), Port);
             var lastTimeStamp = Buffer.Samples.First().Timestamp;
 
             foreach (var sample in Buffer.Samples)
@@ -29,10 +38,12 @@ namespace SeqOSC
                 var delta = sample.Timestamp - lastTimeStamp;
                 
                 Thread.Sleep((int)Math.Round(delta / Speed));
-                Client.Send(Receiver, sample.Packet);
+                Client.Send(receiver, sample.Packet);
 
                 lastTimeStamp = sample.Timestamp;
             }
+
+            _playing = false;
         }
     }
 }

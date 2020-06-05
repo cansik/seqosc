@@ -9,14 +9,18 @@ namespace SeqOSC
     {
         public override void OnInspectorGUI()
         {
-            DrawDefaultInspector();
-
-            var incrementalUpdater = target as UnitySeqOscPlayer;
-            if(GUILayout.Button("Play"))
-            {
-                
-            }
             base.OnInspectorGUI();
+            var player = target as UnitySeqOscPlayer;
+            
+            if(GUILayout.Button("Select"))
+            {
+                var objectField = (Texture2D)EditorGUILayout.ObjectField("My Texture", null, typeof(Texture2D), false);
+            }
+            
+            if(GUILayout.Button(player.IsPlaying ? "Stop" : "Play"))
+            {
+                player.Play();
+            }
         }
     }
 }
