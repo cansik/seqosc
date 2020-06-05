@@ -28,6 +28,9 @@ namespace SeqOSC
 
         public void Play()
         {
+            if (Buffer.Samples.Count == 0)
+                return;
+            
             _playing = true;
 
             var receiver = new IPEndPoint(IPAddress.Parse(Host), Port);

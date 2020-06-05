@@ -14,6 +14,13 @@ namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
         public int port = 8000;
         
         public bool IsPlaying => _player.IsPlaying;
+        public bool HasBuffer => _player.Buffer != null;
+
+        public OSCBuffer Buffer
+        {
+            get => _player.Buffer;
+            set => _player.Buffer = value;
+        }
 
         [HideInInspector]
         public string bufferFile;
@@ -26,7 +33,7 @@ namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
                 return;
             }
             
-            if (_player.Buffer == null)
+            if (!HasBuffer)
             {
                 Debug.LogWarning("SeqOSC: No buffer loaded!");
                 return;
