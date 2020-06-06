@@ -1,34 +1,50 @@
 package ch.bildspur.seqosc
 
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.zip.Deflater
-import java.util.zip.Inflater
+import java.util.zip.GZIPInputStream
+import java.util.zip.GZIPOutputStream
 
-fun ByteBuffer.compress() : ByteBuffer {
-    this.position(0)
-    val output = ByteBuffer.allocate(this.limit())
-    output.order(ByteOrder.LITTLE_ENDIAN)
-    val compressor = Deflater(Deflater.BEST_COMPRESSION)
-    compressor.setInput(this)
-    compressor.finish()
-    val compressedDataLength = compressor.deflate(output)
-    compressor.end()
-    output.position(0)
-    output.limit(compressedDataLength)
-    return output
+fun ByteArray.gzipCompress(): ByteArray {
+    var result = byteArrayOf()
+    try {
+        ByteArrayOutputStream(this.size).use { bos ->
+            GZIPOutputStream(bos).use { gzipOS ->
+                gzipOS.write(this)
+                // You need to close it before using bos
+                gzipOS.close()
+                result = bos.toByteArray()
+
+                // todo: get sub part of array (use bos.size)
+            }
+        }
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+    return result
 }
 
-fun ByteBuffer.decompress(bufferSize : Int) : ByteBuffer {
-    this.position(0)
-    val decompresser = Inflater()
-    decompresser.setInput(this)
-    val result = ByteBuffer.allocate(bufferSize)
-    result.order(ByteOrder.LITTLE_ENDIAN)
-    val resultLength = decompresser.inflate(result)
-    decompresser.end()
-    result.position(0)
-    result.limit(resultLength)
+fun ByteArray.gzipUncompress(): ByteArray {
+    var result = byteArrayOf()
+    try {
+        ByteArrayInputStream(this).use { bis ->
+            ByteArrayOutputStream().use { bos ->
+                GZIPInputStream(bis).use { gzipIS ->
+                    val buffer = ByteArray(1024)
+                    var len: Int
+                    while (gzipIS.read(buffer).also { len = it } != -1) {
+                        bos.write(buffer, 0, len)
+                    }
+                    result = bos.toByteArray()
+                }
+            }
+        }
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
     return result
 }
 
@@ -49,5 +65,6 @@ fun Boolean.toFlag(position : Int) : Int  {
 }
 
 fun Int.getFlag(position: Int) : Boolean {
-    return (this and (1 shl position)) != 0;
+    // todo: check if this is corrct?! (b & (1 << bitNumber)) != 0;
+    return this shr position and 0xF == 1
 }

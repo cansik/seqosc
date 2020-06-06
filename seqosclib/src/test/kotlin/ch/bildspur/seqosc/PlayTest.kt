@@ -5,7 +5,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 
 fun main() {
-    val data = Files.readAllBytes(Paths.get("recordings", "test.osc"))
+    val data = Files.readAllBytes(Paths.get("recordings", "test-compressed.osc"))
 
     val buffer = OSCBuffer()
     buffer.read(ByteBuffer.wrap(data))

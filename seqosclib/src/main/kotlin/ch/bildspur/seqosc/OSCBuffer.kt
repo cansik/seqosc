@@ -24,12 +24,13 @@ class OSCBuffer(var comment: String = "") {
             payload.put(it.packet.data)
         }
 
-        // compression
-        if (compressed)
-            payload = payload.compress()
-
-        // reset payload position
         payload.position(0)
+        var payloadRaw = payload.getBytes(payload.limit())
+
+        // compression
+        if (compressed) {
+            payloadRaw = payloadRaw.gzipCompress()
+        }
 
         // write header
         val rawComment = comment.toByteArray(Charsets.UTF_8)
@@ -47,7 +48,7 @@ class OSCBuffer(var comment: String = "") {
         data.putInt(rawComment.size)
         data.put(rawComment)
 
-        data.put(payload)
+        data.put(payloadRaw)
 
         return data
     }
@@ -68,13 +69,14 @@ class OSCBuffer(var comment: String = "") {
         this.speed = data.float
         this.comment = data.getBytes(data.int).toString(Charsets.UTF_8)
 
-        var payload = data.slice()
-        payload.order(ByteOrder.LITTLE_ENDIAN)
+        // extract payload
+        var payloadRaw = data.getBytes(data.limit() - data.position())
 
         if(compressed)
-            payload = payload.decompress(payloadLength)
+            payloadRaw = payloadRaw.gzipUncompress()
 
-        payload.position(0)
+        val payload = ByteBuffer.wrap(payloadRaw)
+        payload.order(ByteOrder.LITTLE_ENDIAN)
 
         var count = 0
         while (count < sampleCount && payload.hasRemaining()) {
