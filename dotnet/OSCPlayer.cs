@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using SeqOSC.Net;
 
 namespace SeqOSC
@@ -35,7 +36,7 @@ namespace SeqOSC
             Buffer = buffer;
         }
 
-        public void Play()
+        public async Task Play()
         {
             if (Buffer.Samples.Count == 0)
                 return;
@@ -51,7 +52,7 @@ namespace SeqOSC
                 var sample = Buffer.Samples[_position++];
                 var delta = sample.Timestamp - lastTimeStamp;
                 
-                Thread.Sleep((int)Math.Round(delta / Speed));
+                await Task.Delay((int)Math.Round(delta / Speed));
                 Client.Send(receiver, sample.Packet);
 
                 lastTimeStamp = sample.Timestamp;

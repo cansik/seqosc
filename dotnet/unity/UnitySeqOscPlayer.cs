@@ -49,12 +49,11 @@ namespace SeqOSC.Unity
             _player.Speed = speed;
             _player.Loop = loop;
 
-            var playTask = new Task( () =>
+            Task.Run(async () =>
             {
-                _player.Play();
+                await _player.Play();
                 EditorUtility.SetDirty(this);
             });
-            playTask.Start();
         }
 
         public void Stop()
