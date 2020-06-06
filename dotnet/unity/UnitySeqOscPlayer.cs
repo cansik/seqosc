@@ -2,11 +2,10 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using SeqOSC;
 using UnityEditor;
 using UnityEngine;
 
-namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
+namespace SeqOSC.Unity
 {
     public class UnitySeqOscPlayer : MonoBehaviour
     {

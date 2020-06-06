@@ -1,11 +1,8 @@
-using System;
 using System.IO;
-using IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity;
-using ICSharpCode.NRefactory.Ast;
 using UnityEditor;
 using UnityEngine;
 
-namespace SeqOSC
+namespace SeqOSC.Unity
 {
     [CustomEditor(typeof(UnitySeqOscPlayer))]
     public class UnitySeqOscPlayerEditor : Editor
