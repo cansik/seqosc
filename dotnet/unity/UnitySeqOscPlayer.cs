@@ -26,7 +26,7 @@ namespace SeqOSC.Unity
             set => _player.Buffer = value;
         }
 
-        [HideInInspector]
+        //[HideInInspector]
         public string bufferFile;
 
         public void Play()
@@ -65,18 +65,6 @@ namespace SeqOSC.Unity
             _player.Stop();
         }
 
-        public void OnEnable()
-        {
-            // load buffer on enable if is available
-            if (HasBuffer)
-                return;
-
-            if (File.Exists(bufferFile))
-            {
-                LoadBuffer(bufferFile);
-            }
-        }
-
         public void Start()
         {
             if (playOnStart && HasBuffer)
@@ -90,6 +78,18 @@ namespace SeqOSC.Unity
             if (IsPlaying)
             {
                 Stop();
+            }
+        }
+
+        public void OnValidate()
+        {
+            // reload buffer after start
+            if (HasBuffer)
+                return;
+
+            if (File.Exists(bufferFile))
+            {
+                LoadBuffer(bufferFile);
             }
         }
 
