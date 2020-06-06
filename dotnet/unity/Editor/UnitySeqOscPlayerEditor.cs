@@ -24,20 +24,7 @@ namespace SeqOSC
 
                 if (path != "")
                 {
-                    try
-                    {
-                        var data = File.ReadAllBytes(path);
-                        var buffer = new OSCBuffer();
-                        buffer.Read(data);
-
-                        player.Buffer = buffer;
-                        player.bufferFile = path;
-                    }
-                    catch (Exception ex)
-                    {
-                        player.Buffer = null;
-                        Debug.LogException(ex);
-                    }
+                    player.LoadBuffer(path);
                 }
             }
             //GUILayout.EndHorizontal();
