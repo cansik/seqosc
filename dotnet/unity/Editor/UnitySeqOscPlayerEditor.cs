@@ -15,8 +15,10 @@ namespace SeqOSC
             base.OnInspectorGUI();
             var player = target as UnitySeqOscPlayer;
             Debug.Assert(player != null, "SeqOsc Player is not initialised yet!");
-            
-            if(GUILayout.Button(player.HasBuffer ? Path.GetFileName(player.bufferFile) : "Select Buffer"))
+
+            //GUILayout.BeginHorizontal();
+            GUILayout.Label("File");
+            if (GUILayout.Button(player.HasBuffer ? Path.GetFileName(player.bufferFile) : "Select"))
             {
                 var path = EditorUtility.OpenFilePanel("Open Buffer", Application.dataPath, "osc");
 
@@ -38,10 +40,21 @@ namespace SeqOSC
                     }
                 }
             }
-            
-            if(GUILayout.Button(player.IsPlaying ? "Stop" : "Play"))
+            //GUILayout.EndHorizontal();
+
+            if (!player.HasBuffer) return;
+
+            //GUILayout.BeginHorizontal();
+            GUILayout.Label("Samples");
+            GUILayout.Label($"{player.Buffer.Samples.Count}");
+            //GUILayout.EndHorizontal();
+
+            if (GUILayout.Button(player.IsPlaying ? "Stop" : "Play"))
             {
-                player.Play();
+                if (!player.IsPlaying)
+                    player.Play();
+                else
+                    player.Stop();
             }
         }
     }

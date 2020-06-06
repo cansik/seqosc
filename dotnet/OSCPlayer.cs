@@ -10,6 +10,8 @@ namespace SeqOSC
     {
         public OSCBuffer Buffer { get; set; }
         public float Speed { get; set; } = 1.0f;
+
+        public bool Loop { get; set; } = false;
         public string Host { get; set; } = IPAddress.Loopback.ToString();
         public int Port { get; set; } = 8000;
         
@@ -18,6 +20,8 @@ namespace SeqOSC
         public bool IsPlaying => _playing;
 
         private volatile bool _playing = false;
+        
+        private volatile int _sampleIndex = 0;
 
         public OSCPlayer()
         {
@@ -35,20 +39,33 @@ namespace SeqOSC
                 return;
             
             _playing = true;
+            _sampleIndex = 0;
 
             var receiver = new IPEndPoint(IPAddress.Parse(Host), Port);
             var lastTimeStamp = Buffer.Samples.First().Timestamp;
 
-            foreach (var sample in Buffer.Samples)
+            while (_sampleIndex < Buffer.Samples.Count && _playing)
             {
+                var sample = Buffer.Samples[_sampleIndex++];
                 var delta = sample.Timestamp - lastTimeStamp;
                 
                 Thread.Sleep((int)Math.Round(delta / Speed));
                 Client.Send(receiver, sample.Packet);
 
                 lastTimeStamp = sample.Timestamp;
+
+                if (Loop && _sampleIndex >= Buffer.Samples.Count)
+                {
+                    lastTimeStamp = Buffer.Samples.First().Timestamp;
+                    _sampleIndex = 0;
+                }
             }
 
+            _playing = false;
+        }
+
+        public void Stop()
+        {
             _playing = false;
         }
     }

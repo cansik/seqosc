@@ -14,6 +14,7 @@ namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
         public float speed = 1.0f;
         public string host = IPAddress.Loopback.ToString();
         public int port = 8000;
+        public bool loop = false;
         
         public bool IsPlaying => _player.IsPlaying;
         public bool HasBuffer => _player.Buffer != null;
@@ -45,6 +46,7 @@ namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
             _player.Host = host;
             _player.Port = port;
             _player.Speed = speed;
+            _player.Loop = loop;
 
             var playTask = new Task( () =>
             {
@@ -52,6 +54,14 @@ namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
                 EditorUtility.SetDirty(this);
             });
             playTask.Start();
+        }
+
+        public void Stop()
+        {
+            if (!IsPlaying)
+                return;
+            
+            _player.Stop();
         }
     }
 }
