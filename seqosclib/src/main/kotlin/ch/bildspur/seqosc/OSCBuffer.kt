@@ -36,7 +36,7 @@ class OSCBuffer(var comment: String = "") {
         val rawComment = comment.toByteArray(Charsets.UTF_8)
         val headerLength = Int.SIZE_BYTES + Int.SIZE_BYTES + Int.SIZE_BYTES + 4 + Int.SIZE_BYTES + rawComment.size
 
-        val data = ByteBuffer.allocate(headerLength + payload.limit())
+        val data = ByteBuffer.allocate(headerLength + payloadRaw.size)
         data.order(ByteOrder.LITTLE_ENDIAN)
 
         val flags = compressed.toFlag(0)

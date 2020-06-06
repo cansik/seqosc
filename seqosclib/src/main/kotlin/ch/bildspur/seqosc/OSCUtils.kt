@@ -14,11 +14,8 @@ fun ByteArray.gzipCompress(): ByteArray {
         ByteArrayOutputStream(this.size).use { bos ->
             GZIPOutputStream(bos).use { gzipOS ->
                 gzipOS.write(this)
-                // You need to close it before using bos
                 gzipOS.close()
                 result = bos.toByteArray()
-
-                // todo: get sub part of array (use bos.size)
             }
         }
     } catch (e: IOException) {
