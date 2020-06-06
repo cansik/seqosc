@@ -4,10 +4,10 @@ namespace SeqOSC
 {
     public class OSCSample
     {
-        public OSCSample(OSCPacket packet, long timestamp)
+        public OSCSample(long timestamp, OSCPacket packet)
         {
-            Packet = packet;
             Timestamp = timestamp;
+            Packet = packet;
         }
 
         public long Timestamp { get; private set; }

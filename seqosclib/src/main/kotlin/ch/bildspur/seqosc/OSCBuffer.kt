@@ -29,7 +29,7 @@ class OSCBuffer(var comment: String = "") {
 
         // compression
         if (compressed) {
-            payloadRaw = payloadRaw.gzipCompress()
+            payloadRaw = payloadRaw.compress()
         }
 
         // write header
@@ -73,7 +73,7 @@ class OSCBuffer(var comment: String = "") {
         var payloadRaw = data.getBytes(data.limit() - data.position())
 
         if(compressed)
-            payloadRaw = payloadRaw.gzipUncompress()
+            payloadRaw = payloadRaw.uncompress()
 
         val payload = ByteBuffer.wrap(payloadRaw)
         payload.order(ByteOrder.LITTLE_ENDIAN)

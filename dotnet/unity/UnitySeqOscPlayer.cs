@@ -1,6 +1,8 @@
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using SeqOSC;
+using UnityEditor;
 using UnityEngine;
 
 namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
@@ -44,7 +46,12 @@ namespace IAS_DigitalHumans.Scripts.FaceStream.seqosc.unity
             _player.Port = port;
             _player.Speed = speed;
 
-            _player.Play();
+            var playTask = new Task( () =>
+            {
+                _player.Play();
+                EditorUtility.SetDirty(this);
+            });
+            playTask.Start();
         }
     }
 }

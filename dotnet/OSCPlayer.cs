@@ -19,9 +19,12 @@ namespace SeqOSC
 
         private volatile bool _playing = false;
 
-        public OSCPlayer() { }
+        public OSCPlayer()
+        {
+            Client = new OSCClient();
+        }
         
-        public OSCPlayer(OSCBuffer buffer)
+        public OSCPlayer(OSCBuffer buffer) : this()
         {
             Buffer = buffer;
         }

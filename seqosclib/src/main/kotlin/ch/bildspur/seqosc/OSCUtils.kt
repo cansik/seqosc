@@ -8,7 +8,7 @@ import java.nio.ByteOrder
 import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
 
-fun ByteArray.gzipCompress(): ByteArray {
+fun ByteArray.compress(): ByteArray {
     var result = byteArrayOf()
     try {
         ByteArrayOutputStream(this.size).use { bos ->
@@ -24,7 +24,7 @@ fun ByteArray.gzipCompress(): ByteArray {
     return result
 }
 
-fun ByteArray.gzipUncompress(): ByteArray {
+fun ByteArray.uncompress(): ByteArray {
     var result = byteArrayOf()
     try {
         ByteArrayInputStream(this).use { bis ->
