@@ -26,7 +26,7 @@ namespace SeqOSC.Unity
             set => _player.Buffer = value;
         }
 
-        //[HideInInspector]
+        [HideInInspector]
         public string bufferFile;
 
         public void Play()
@@ -102,7 +102,9 @@ namespace SeqOSC.Unity
                 buffer.Read(data);
 
                 Buffer = buffer;
-                bufferFile = path;
+                
+                // store path (try to use relative if possible)
+                bufferFile = path.Replace(Environment.CurrentDirectory + Path.DirectorySeparatorChar, "");
             }
             catch (Exception ex)
             {

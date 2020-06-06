@@ -13,7 +13,7 @@ namespace SeqOSC.Unity
             var player = target as UnitySeqOscPlayer;
             Debug.Assert(player != null, "SeqOsc Player is not initialised yet!");
 
-            //GUILayout.BeginHorizontal();
+            GUILayout.BeginHorizontal();
             GUILayout.Label("File");
             if (GUILayout.Button(player.HasBuffer ? Path.GetFileName(player.bufferFile) : "Select"))
             {
@@ -24,14 +24,14 @@ namespace SeqOSC.Unity
                     player.LoadBuffer(path);
                 }
             }
-            //GUILayout.EndHorizontal();
+            GUILayout.EndHorizontal();
 
             if (!player.HasBuffer) return;
 
-            //GUILayout.BeginHorizontal();
+            GUILayout.BeginHorizontal();
             GUILayout.Label("Samples");
             GUILayout.Label($"{player.Buffer.Samples.Count}");
-            //GUILayout.EndHorizontal();
+            GUILayout.EndHorizontal();
 
             if (GUILayout.Button(player.IsPlaying ? "Stop" : "Play"))
             {
