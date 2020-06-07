@@ -1,0 +1,13 @@
+/*
+https://flatuicolors.com/palette/defo
+ */
+
+.button {
+    -fx-base: #2c3e50;
+    -fx-content-display: graphic-only;
+    -fx-padding: 15px;
+}
+
+.root {
+    -fx-background-color: #bdc3c7;
+}

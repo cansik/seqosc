@@ -13,7 +13,7 @@ fun main() {
     println("First:")
     println(buffer.samples.first().packet)
 
-    val player = OSCPlayer("localhost", 8000, buffer, buffer.speed)
+    val player = OSCPlayer("localhost", 8000, buffer.speed, buffer)
 
     println("playing ${buffer.samples.size} samples...")
     player.play()

@@ -6,7 +6,7 @@ import java.net.Inet4Address
 import kotlin.math.roundToLong
 
 
-class OSCPlayer(val host : String, val port : Int, val buffer : OSCBuffer, var speed : Float = 1.0f) {
+class OSCPlayer(val host : String, val port : Int, var speed : Float = 1.0f, val buffer : OSCBuffer) {
 
     val client = OSCClient()
     val address = Inet4Address.getByName(host)
