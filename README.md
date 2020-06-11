@@ -14,7 +14,7 @@ The data is in binary format with little-endian encoding. Please be aware that t
 Only one header per file is allowed and every seqosc file has to start with the header. 
 
 - flags (`int32`)
-    - compression (`byte 0`) - if on payload is [compressed](#Compression) with delfate
+    - compression (`bit 0`) - if on payload is [compressed](#Compression) with delfate
 - sample-count (`int32`) - how many samples are in the payload (`-1` tells the parser to iterate himself)
 - sample-length (`int32`) - how long the payload is in bytes (mainly used for compression)
 - speed (`float`) - intended speed to re-play the samples (`1.0` is realtime)
