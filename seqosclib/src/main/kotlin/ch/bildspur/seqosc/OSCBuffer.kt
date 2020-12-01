@@ -12,6 +12,12 @@ class OSCBuffer(var comment: String = "") {
     // data
     val samples = mutableListOf<OSCSample>()
 
+    fun clear() {
+        samples.clear()
+        speed = 1.0f
+        comment = ""
+    }
+
     fun write(compressed: Boolean = false): ByteBuffer {
         // write payload
         val payloadLength = (samples.size * (Int.SIZE_BYTES + Long.SIZE_BYTES)) + samples.sumBy { it.packet.data.size }

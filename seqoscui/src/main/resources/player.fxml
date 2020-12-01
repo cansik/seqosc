@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
-
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bildspur.seqosc.ui.PlayerWindow">
+<?import java.net.URL?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0"
+      prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ch.bildspur.seqosc.ui.PlayerWindow">
     <stylesheets>
-        <URL value="@player.css" />
+        <URL value="@player.css"/>
     </stylesheets>
     <children>
         <HBox prefHeight="26.0" prefWidth="400.0">
@@ -32,7 +28,8 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a0a2a4" height="27.0" stroke="BLACK" strokeType="INSIDE" width="13.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a0a2a4" height="27.0" stroke="BLACK"
+                           strokeType="INSIDE" width="13.0"/>
                 <Button mnemonicParsing="false" onAction="#onSkipBack" text="SkipBack">
                     <graphic>
                         <ImageView>
@@ -70,18 +67,34 @@
                 </Button>
             </children>
         </HBox>
-        <HBox prefHeight="17.0" prefWidth="400.0">
+        <HBox prefHeight="45.0" prefWidth="400.0">
             <children>
-                <ProgressBar fx:id="progressBar" prefHeight="17.0" prefWidth="182.0" progress="0.0" />
-                <Label fx:id="progressLabel" text="Progress" />
+                <CheckBox fx:id="loopCheckBox" text="Loop"/>
             </children>
         </HBox>
-      <HBox prefHeight="45.0" prefWidth="400.0">
-         <children>
-            <Label text="Host" />
-            <TextField fx:id="hostField" promptText="localhost" />
-            <TextField fx:id="portField" />
-         </children>
-      </HBox>
+        <HBox prefHeight="17.0" prefWidth="400.0">
+            <children>
+                <Label fx:id="progressLabel" text="Progress"/>
+                <ProgressBar fx:id="progressBar" prefHeight="17.0" prefWidth="200.0" progress="0.0"/>
+            </children>
+        </HBox>
+        <HBox prefHeight="45.0" prefWidth="400.0">
+            <children>
+                <Label text="Host"/>
+                <TextField fx:id="hostField" text="localhost"/>
+                <TextField fx:id="portField" text="7400"/>
+            </children>
+        </HBox>
+        <HBox prefHeight="45.0" prefWidth="400.0">
+            <children>
+                <Label fx:id="sampleCountField" text="-"/>
+            </children>
+        </HBox>
+
+        <HBox prefHeight="45.0" prefWidth="400.0">
+            <children>
+                <Label fx:id="currentIndexField" text="-"/>
+            </children>
+        </HBox>
     </children>
 </VBox>
