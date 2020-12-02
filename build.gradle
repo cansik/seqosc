@@ -3,6 +3,10 @@ allprojects {
     repositories {
         jcenter() 
     }
+
+    dependencies {
+
+    }
 }
 
 subprojects {
