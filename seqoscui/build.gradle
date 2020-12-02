@@ -17,17 +17,17 @@ java {
     modularity.inferModulePath.set(true)
 }
 
+compileKotlin {
+    destinationDir = compileJava.destinationDir
+}
+
 application {
     mainModule = 'seqoscui' // name defined in module-info.java
     mainClass = 'ch.bildspur.seqosc.ui.MainKt'
 }
 
 run {
-    main = "$moduleName/ch.bildspur.seqosc.ui.MainKt"
-}
-
-application {
-    mainClassName = 'ch.bildspur.seqosc.ui.MainKt'
+    main = "seqoscui/ch.bildspur.seqosc.ui.MainKt"
 }
 
 javafx {
