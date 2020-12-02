@@ -7,5 +7,5 @@ module seqoscui {
 
     requires seqosclib;
 
-    exports ch.bildspur.seqosc.ui;
+    opens ch.bildspur.seqosc.ui;
 }

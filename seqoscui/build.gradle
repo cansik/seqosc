@@ -1,29 +1,17 @@
 plugins {
     id 'java'
     id 'application'
-    id 'idea'
     id 'org.jetbrains.kotlin.jvm'
     id 'org.openjfx.javafxplugin' version '0.0.9'
-    id 'org.beryx.jlink' version '2.22.0'
+    id 'org.beryx.jlink' version '2.22.3'
 }
 
 group 'ch.bildspur'
 version '1.0-SNAPSHOT'
 
-idea {
-    module {
-        inheritOutputDirs = true
-    }
-}
-
 repositories {
     mavenCentral()
 }
-
-java {
-    modularity.inferModulePath.set(true)
-}
-
 
 application {
     mainModule = 'seqoscui' // name defined in module-info.java
@@ -54,6 +42,7 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+// jlink only works in gradle 6.7.1 - running only in 6.4.*
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
