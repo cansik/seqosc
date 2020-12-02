@@ -13,10 +13,9 @@ import java.io.File
 import java.nio.ByteBuffer
 import java.nio.file.Files
 import kotlin.concurrent.thread
-import kotlin.math.max
 
 
-class PlayerWindow() {
+class PlayerWindow {
     lateinit var mainStage: Stage
 
     // osc

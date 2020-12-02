@@ -1,9 +1,11 @@
-module seqosc.seqoscui.main {
+module seqoscui {
     requires kotlin.stdlib;
 
     requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires seqosc.seqosclib.main;
+    requires seqosclib;
+
+    exports ch.bildspur.seqosc.ui;
 }

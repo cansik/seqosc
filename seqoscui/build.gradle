@@ -13,8 +13,21 @@ repositories {
     mavenCentral()
 }
 
+java {
+    modularity.inferModulePath.set(true)
+}
+
 application {
-    mainClassName = 'ch.bildspur.seqosc.ui.Main'
+    mainModule = 'seqoscui' // name defined in module-info.java
+    mainClass = 'ch.bildspur.seqosc.ui.MainKt'
+}
+
+run {
+    main = "$moduleName/ch.bildspur.seqosc.ui.MainKt"
+}
+
+application {
+    mainClassName = 'ch.bildspur.seqosc.ui.MainKt'
 }
 
 javafx {
@@ -44,6 +57,6 @@ compileTestKotlin {
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
-        name = 'SeqOSC'
+        name = 'seqosc'
     }
 }

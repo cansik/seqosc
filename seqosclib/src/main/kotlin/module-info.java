@@ -1,4 +1,4 @@
-module seqosc.seqosclib.main {
+module seqosclib {
     requires kotlin.stdlib;
 
     exports ch.bildspur.seqosc;
