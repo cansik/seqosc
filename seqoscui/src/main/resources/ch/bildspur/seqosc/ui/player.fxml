@@ -14,56 +14,21 @@
     <children>
         <HBox prefHeight="26.0" prefWidth="400.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#onLoad" text="Load">
-                    <graphic>
-                        <ImageView>
-                            <Image url="icons/file.png"/>
-                        </ImageView>
-                    </graphic>
+                <Button mnemonicParsing="false" onAction="#onLoad" text="📂">
                 </Button>
-                <Button mnemonicParsing="false" onAction="#onSave" text="Save">
-                    <graphic>
-                        <ImageView>
-                            <Image url="icons/save.png"/>
-                        </ImageView>
-                    </graphic>
+                <Button mnemonicParsing="false" onAction="#onSave" text="💾">
                 </Button>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a0a2a4" height="27.0" stroke="BLACK"
                            strokeType="INSIDE" width="13.0"/>
-                <Button mnemonicParsing="false" onAction="#onSkipBack" text="SkipBack">
-                    <graphic>
-                        <ImageView>
-                            <Image url="icons/skip-back.png"/>
-                        </ImageView>
-                    </graphic>
+                <Button mnemonicParsing="false" onAction="#onSkipBack" text="⏮️">
                 </Button>
-                <Button mnemonicParsing="false" onAction="#onReset" text="Reset">
-                    <graphic>
-                        <ImageView>
-                            <Image url="icons/square.png"/>
-                        </ImageView>
-                    </graphic>
+                <Button mnemonicParsing="false" onAction="#onReset" text="️️⏹️">
                 </Button>
-                <Button fx:id="playPauseButton" mnemonicParsing="false" onAction="#onPlayPause" text="PlayPause">
-                    <graphic>
-                        <ImageView>
-                            <Image url="icons/play.png"/>
-                        </ImageView>
-                    </graphic>
+                <Button fx:id="playPauseButton" mnemonicParsing="false" onAction="#onPlayPause" text="⏯️">
                 </Button>
-                <Button mnemonicParsing="false" onAction="#onSkipForward" text="SkipForward">
-                    <graphic>
-                        <ImageView>
-                            <Image url="icons/skip-forward.png"/>
-                        </ImageView>
-                    </graphic>
+                <Button mnemonicParsing="false" onAction="#onSkipForward" text="⏭️">
                 </Button>
-                <Button fx:id="recordButton" mnemonicParsing="false" onAction="#onRecord" text="Record">
-                    <graphic>
-                        <ImageView>
-                            <Image url="icons/aperture.png"/>
-                        </ImageView>
-                    </graphic>
+                <Button fx:id="recordButton" mnemonicParsing="false" onAction="#onRecord" text="⏺️">
                 </Button>
             </children>
         </HBox>

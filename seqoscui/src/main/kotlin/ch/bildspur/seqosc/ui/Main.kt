@@ -7,20 +7,27 @@ import javafx.scene.Scene
 import javafx.stage.Stage
 
 fun main() {
-    Platform.startup {
-        val stage = Stage()
-        val loader = FXMLLoader(stage.javaClass.classLoader.getResource("player.fxml"))
-        val root = loader.load<Any>() as Parent
-        val controller = loader.getController<Any>() as PlayerWindow
+    SeqOscUIApp().run()
+}
 
-        controller.mainStage = stage
+class SeqOscUIApp {
+    fun run() {
+        Platform.startup {
+            val stage = Stage()
+            val resource = PlayerWindow::class.java.getResource("/ch/bildspur/seqosc/ui/player.fxml")
+            val loader = FXMLLoader(resource)
+            val root = loader.load<Any>() as Parent
+            val controller = loader.getController<Any>() as PlayerWindow
 
-        stage.title = "SeqOSC"
-        stage.scene = Scene(root)
+            controller.mainStage = stage
 
-        // setup on shown event
-        stage.setOnShown { controller.onShown() }
-        stage.isResizable = false
-        stage.show()
+            stage.title = "SeqOSC"
+            stage.scene = Scene(root)
+
+            // setup on shown event
+            stage.setOnShown { controller.onShown() }
+            stage.isResizable = false
+            stage.show()
+        }
     }
 }

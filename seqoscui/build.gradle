@@ -26,10 +26,6 @@ application {
     mainClass = 'ch.bildspur.seqosc.ui.MainKt'
 }
 
-run {
-    main = "seqoscui/ch.bildspur.seqosc.ui.MainKt"
-}
-
 javafx {
     version = "11"
     modules = [ 'javafx.controls', 'javafx.fxml' ]

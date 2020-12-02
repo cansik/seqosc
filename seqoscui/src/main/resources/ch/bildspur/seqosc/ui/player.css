@@ -4,7 +4,7 @@ https://flatuicolors.com/palette/defo
 
 .button {
     -fx-base: #2c3e50;
-    -fx-content-display: graphic-only;
+    -fx-font-size: 25px;
     -fx-padding: 15px;
 }
 
