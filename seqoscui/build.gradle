@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'idea'
     id 'org.jetbrains.kotlin.jvm'
     id 'org.openjfx.javafxplugin' version '0.0.9'
     id 'org.beryx.jlink' version '2.22.0'
@@ -8,6 +9,12 @@ plugins {
 
 group 'ch.bildspur'
 version '1.0-SNAPSHOT'
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
 
 repositories {
     mavenCentral()
@@ -17,9 +24,6 @@ java {
     modularity.inferModulePath.set(true)
 }
 
-compileKotlin {
-    destinationDir = compileJava.destinationDir
-}
 
 application {
     mainModule = 'seqoscui' // name defined in module-info.java
@@ -35,7 +39,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    compile project(':seqosclib')
+    implementation project(':seqosclib')
 
     // javafx
     compile group: 'org.openjfx', name: 'javafx-base', version: '11.0.2'

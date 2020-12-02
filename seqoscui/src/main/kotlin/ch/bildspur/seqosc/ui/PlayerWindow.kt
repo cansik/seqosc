@@ -43,13 +43,6 @@ class PlayerWindow {
     @FXML
     lateinit var loopCheckBox: CheckBox
 
-    enum class UIStates {
-        Idle,
-        Playing,
-        Paused,
-        Recording
-    }
-
     var uiState = UIStates.Idle
     var bufferSize = 0
 
