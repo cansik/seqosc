@@ -5,3 +5,5 @@ build
 recordings/test.osc
 *.osc
 *.meta
+*.pyc
+venv
