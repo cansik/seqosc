@@ -17,6 +17,7 @@ class OSCBuffer:
         return ((flags >> index) & 1) == 1
 
     def read(self, data: bytes):
+        # todo: optimize by using unpack_from
         i = 0
 
         # read header
@@ -51,3 +52,43 @@ class OSCBuffer:
 
             p += length
             count += 1
+
+    def write(self, compressed: bool = False) -> bytes:
+        # write payload
+        sample_count = len(self.samples)
+        payload_length = (sample_count * (8 + 4)) + sum(len(s.packet) for s in self.samples)
+        payload = bytearray(payload_length)
+
+        i = 0
+        sample_header_length = 8 + 4
+        for sample in self.samples:
+            length = len(sample.packet)
+
+            struct.pack_into('<qi', payload, i, sample.timestamp, length)
+            i += sample_header_length
+
+            # write sample packet
+            payload[i:i + length] = sample.packet
+            i += length
+
+        raw_payload = payload
+
+        # compress
+        if compressed:
+            raw_payload = gzip.compress(raw_payload)
+
+        # header
+        raw_comment = self.comment.encode('utf-8')
+        comment_length = len(raw_comment)
+        header_length = (5 * 4) + comment_length
+
+        # todo: set flag by bitmask
+        flags = int(compressed)
+
+        # set data
+        data = bytearray(header_length + len(raw_payload))
+        struct.pack_into('<iiifi', data, 0, flags, len(self.samples), payload_length, self.speed, comment_length)
+        data[header_length - comment_length:header_length] = raw_comment
+        data[header_length:] = raw_payload
+
+        return data

@@ -7,3 +7,4 @@ recordings/test.osc
 *.meta
 *.pyc
 venv
+python/VBinDiff.exe
