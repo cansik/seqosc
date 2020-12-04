@@ -43,7 +43,7 @@ class OSCBuffer:
         # read samples
         count = 0
         p = 0
-        while count < sample_count and i < len(payload):
+        while count < sample_count and p < len(payload):
             timestamp, length = struct.unpack('<qi', payload[p:p + 12])
             p += 12
 
