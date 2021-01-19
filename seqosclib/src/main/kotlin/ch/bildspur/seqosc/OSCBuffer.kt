@@ -21,7 +21,7 @@ class OSCBuffer(var comment: String = "") {
     fun write(compressed: Boolean = false): ByteBuffer {
         // write payload
         val payloadLength = (samples.size * (Int.SIZE_BYTES + Long.SIZE_BYTES)) + samples.sumBy { it.packet.data.size }
-        var payload = ByteBuffer.allocate(payloadLength)
+        val payload = ByteBuffer.allocate(payloadLength)
         payload.order(ByteOrder.LITTLE_ENDIAN)
 
         samples.forEach {
